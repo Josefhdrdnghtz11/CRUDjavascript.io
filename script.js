@@ -2,7 +2,7 @@ let data = [];
 
 function tampil(){
     let tabel = document.getElementById('tabel');
-    tabel.innerHTML = '<tr><th>No</th><th>Name</th><th>Jurusan</th><th>Action</th></tr>';
+    tabel.innerHTML = '<tr><th>No</th><th>Nama</th><th>Jurusan</th><th>Action</th></tr>';
     for (let i = 0; i < data.length; i++) {
         let btnEdit = '<button class="btn-edit" onclick="edit(' + i + ')">edit</button>';
         let btnHapus = '<button class="btn-hapus" onclick="hapus(' + i + ')">Hapus</button>';
@@ -12,7 +12,7 @@ function tampil(){
 }
 
 function tambah() {
-    const inputName = document.querySelector('input[name="name"]');
+    const inputName = document.querySelector('input[name="nama"]');
     const inputJurusan = document.querySelector('input[name="jurusan"]');
     data.push([inputName.value, inputJurusan.value]);
     tampil();
