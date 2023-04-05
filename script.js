@@ -12,18 +12,25 @@ function tampil(){
 }
 
 function tambah() {
-    const inputName = document.querySelector('input[name="Nama"]');
+    const inputName = document.querySelector('input[name="name"]');
     const inputJurusan = document.querySelector('input[name="jurusan"]');
     data.push([inputName.value, inputJurusan.value]);
     tampil();
-    console.log(data);
 }
 
 function edit(index) {
-  let newName = prompt("Masukkan nama baru:");
-  let newJurusan = prompt("Masukkan jurusan baru:");
-  data[index] = [newName, newJurusan];
-  tampil();
+    let option = prompt("Pilih data yang ingin diubah (1 = Nama, 2 = Jurusan):");
+    if (option === "1") {
+        let newName = prompt("Masukkan nama baru:");
+        data[index][0] = newName;
+        tampil();
+    } else if (option === "2") {
+        let newJurusan = prompt("Masukkan jurusan baru:");
+        data[index][1] = newJurusan;
+        tampil();
+    } else {
+        alert("Pilihan tidak valid.");
+    }
 }
 
 function hapus(index) {
