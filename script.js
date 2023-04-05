@@ -4,7 +4,7 @@ function tampil(){
     let tabel = document.getElementById('tabel');
     tabel.innerHTML = '<tr><th>No</th><th>Nama</th><th>Jurusan</th><th>Action</th></tr>';
     for (let i = 0; i < data.length; i++) {
-        let btnEdit = '<button class="btn-edit" onclick="edit(' + i + ')">edit</button>';
+        let btnEdit = '<button class="btn-edit" onclick="edit(' + i + ')">Edit</button>';
         let btnHapus = '<button class="btn-hapus" onclick="hapus(' + i + ')">Hapus</button>';
         let j = i + 1;
         tabel.innerHTML += `<tr><td>${j}</td><td>${data[i][0]}</td><td>${data[i][1]}</td><td>${btnEdit}${btnHapus}</td></tr>`
