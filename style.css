@@ -33,7 +33,7 @@ body {
   
   /* Style the "Tambah" button */
   .btn-tambah {
-    background-color: #4CAF50;
+    background-color: #7ca982;
     color: white;
     padding: 14px 20px;
     margin-top: 10px;
@@ -45,7 +45,7 @@ body {
   }
   
   .btn-tambah:hover {
-    background-color: #45a049;
+    background-color: #59885F;
   }
   
   /* Style the table */
