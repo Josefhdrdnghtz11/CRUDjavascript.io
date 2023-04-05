@@ -12,7 +12,7 @@ function tampil(){
 }
 
 function tambah() {
-    const inputName = document.querySelector('input[name="nama"]');
+    const inputName = document.querySelector('input[name="Nama"]');
     const inputJurusan = document.querySelector('input[name="jurusan"]');
     data.push([inputName.value, inputJurusan.value]);
     tampil();
