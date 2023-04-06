@@ -11,17 +11,25 @@ function tampil(){
     }
 }
 
+// Initialize Google Sheets API client
+gapi.load('client', initClient);
+
+function initClient() {
+    // Load the Google Sheets API
+    gapi.client.load('sheets', 'v4', function() {
+        // API client loaded, you can now make API calls
+    });
+}
+
 function tambah() {
-    const inputName = document.querySelector('input[name="Nama"]');
-    const inputJurusan = document.querySelector('input[name="jurusan"]');
-    data.push([inputName.value, inputJurusan.value]);
-    tampil();
+    // Your existing code for adding data to the 'data' array
 
     // Update Google Sheets
-    const spreadsheetId = '<Nwxbrdoj7AWn7d9U>'; // Replace with the ID of your Google Sheets spreadsheet
+    const spreadsheetId = 'Nwxbrdoj7AWn7d9U'; // Replace with the ID of your Google Sheets spreadsheet
     const sheetName = 'Untitled spreadsheet (1)'; // Replace with the name of the sheet you want to update
     const range = `${sheetName}!A4:C24`; // Replace with the range of cells you want to update
     const values = [['No', 'Nama', 'Jurusan']].concat(data);
+    tampil();
     gapi.client.sheets.spreadsheets.values.update({
         spreadsheetId: spreadsheetId,
         range: range,
@@ -37,6 +45,7 @@ function tambah() {
         alert('Error updating data in Google Sheets. Please try again.');
     });
 }
+
 
 function edit(index) {
     let option = prompt("Pilih data yang ingin diubah (1 = Nama, 2 = Jurusan):");
