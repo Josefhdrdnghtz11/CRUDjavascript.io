@@ -29,7 +29,6 @@ function tambah() {
     const sheetName = 'Untitled spreadsheet (1)'; // Replace with the name of the sheet you want to update
     const range = `${sheetName}!A4:C24`; // Replace with the range of cells you want to update
     const values = [['No', 'Nama', 'Jurusan']].concat(data);
-    tampil();
     gapi.client.sheets.spreadsheets.values.update({
         spreadsheetId: spreadsheetId,
         range: range,
@@ -40,11 +39,29 @@ function tambah() {
     }).then(function(response) {
         console.log('Data has been updated in Google Sheets:', response);
         alert('Data has been saved to Google Sheets!');
+
+        // Call tampil() function to show the table after adding data
+        tampil();
     }).catch(function(error) {
         console.error('Error updating data in Google Sheets:', error);
         alert('Error updating data in Google Sheets. Please try again.');
     });
+
+    // Add fetch request to update the APIspreadsheets.com data
+    fetch("https://api.apispreadsheets.com/data/Nwxbrdoj7AWn7d9U/", {
+        method: "POST",
+        body: JSON.stringify({"data": {"Unnamed: 0":"No","Unnamed: 1":"Nama","Unnamed: 2":"Jurusan"}}),
+    }).then(res =>{
+        if (res.status === 201){
+            // SUCCESS
+        }
+        else{
+            // ERROR
+        }
+    });
 }
+
+
 
 
 function edit(index) {
