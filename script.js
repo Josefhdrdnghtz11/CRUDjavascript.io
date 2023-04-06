@@ -1,15 +1,26 @@
 let data = [];
 
-function tampil(){
-    let tabel = document.getElementById('tabel');
-    tabel.innerHTML = '<tr><th>No</th><th>Nama</th><th>Jurusan</th><th>Action</th></tr>';
-    for (let i = 0; i < data.length; i++) {
-        let btnEdit = '<button class="btn-edit" onclick="edit(' + i + ')">Edit</button>';
-        let btnHapus = '<button class="btn-hapus" onclick="hapus(' + i + ')">Hapus</button>';
-        let j = i + 1;
-        tabel.innerHTML += `<tr><td>${j}</td><td>${data[i][0]}</td><td>${data[i][1]}</td><td>${btnEdit}${btnHapus}</td></tr>`
-    }
+function tampil() {
+    // Fetch data from APIspreadsheets.com
+    fetch("https://api.apispreadsheets.com/data/Nwxbrdoj7AWn7d9U/")
+    .then(res => res.json())
+    .then(data => {
+        // Generate and display table dynamically
+        const tableContainer = document.getElementById("table-container"); // Replace with the ID of the HTML element where you want to display the table
+        let tableHTML = "<table>";
+        tableHTML += "<tr><th>No</th><th>Nama</th><th>Jurusan</th></tr>";
+        data.data.forEach(row => {
+            tableHTML += `<tr><td>${row["Unnamed: 0"]}</td><td>${row["Unnamed: 1"]}</td><td>${row["Unnamed: 2"]}</td></tr>`;
+        });
+        tableHTML += "</table>";
+        tableContainer.innerHTML = tableHTML;
+    })
+    .catch(error => {
+        console.error('Error fetching data from APIspreadsheets.com:', error);
+        alert('Error fetching data from APIspreadsheets.com. Please try again.');
+    });
 }
+
 
 // Initialize Google Sheets API client
 gapi.load('client', initClient);
@@ -42,24 +53,25 @@ function tambah() {
 
         // Call tampil() function to show the table after adding data
         tampil();
+
+        // Add fetch request to update the APIspreadsheets.com data
+        fetch("https://api.apispreadsheets.com/data/19584/", {
+            method: "POST",
+            body: JSON.stringify({"data": data}),
+        }).then(res =>{
+            if (res.status === 201){
+                // SUCCESS
+            }
+            else{
+                // ERROR
+            }
+        });
     }).catch(function(error) {
         console.error('Error updating data in Google Sheets:', error);
         alert('Error updating data in Google Sheets. Please try again.');
     });
-
-    // Add fetch request to update the APIspreadsheets.com data
-    fetch("https://api.apispreadsheets.com/data/Nwxbrdoj7AWn7d9U/", {
-        method: "POST",
-        body: JSON.stringify({"data": {"Unnamed: 0":"No","Unnamed: 1":"Nama","Unnamed: 2":"Jurusan"}}),
-    }).then(res =>{
-        if (res.status === 201){
-            // SUCCESS
-        }
-        else{
-            // ERROR
-        }
-    });
 }
+
 
 
 
