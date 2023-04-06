@@ -16,6 +16,26 @@ function tambah() {
     const inputJurusan = document.querySelector('input[name="jurusan"]');
     data.push([inputName.value, inputJurusan.value]);
     tampil();
+
+    // Update Google Sheets
+    const spreadsheetId = '<Nwxbrdoj7AWn7d9U>'; // Replace with the ID of your Google Sheets spreadsheet
+    const sheetName = 'Untitled spreadsheet (1)'; // Replace with the name of the sheet you want to update
+    const range = `${sheetName}!A4:C24`; // Replace with the range of cells you want to update
+    const values = [['No', 'Nama', 'Jurusan']].concat(data);
+    gapi.client.sheets.spreadsheets.values.update({
+        spreadsheetId: spreadsheetId,
+        range: range,
+        valueInputOption: 'RAW',
+        resource: {
+            values: values
+        }
+    }).then(function(response) {
+        console.log('Data has been updated in Google Sheets:', response);
+        alert('Data has been saved to Google Sheets!');
+    }).catch(function(error) {
+        console.error('Error updating data in Google Sheets:', error);
+        alert('Error updating data in Google Sheets. Please try again.');
+    });
 }
 
 function edit(index) {
