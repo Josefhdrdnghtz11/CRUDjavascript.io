@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
     };
   
     // Send data to Apispreadsheets API
-    fetch("https://api.apispreadsheets.com/data/LQmdai9ervKESF0W/", {
+    fetch("https://api.apispreadsheets.com/data/YqnAPH3mtHuOQSt4/", {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function() {
   
   // Function to fetch data from spreadsheet and display in table
   function fetchDataAndDisplayData() {
-    fetch("https://api.apispreadsheets.com/data/LQmdai9ervKESF0W/?query=select%20*%20from%20LQmdai9ervKESF0W%20where%20No=1&count")
+    fetch("https://api.apispreadsheets.com/data/YqnAPH3mtHuOQSt4/?query=select * from YqnAPH3mtHuOQSt4 where NAMA=''&count")
       .then(res => {
         if (res.status === 200) {
           // SUCCESS
@@ -92,7 +92,7 @@ function updateData() {
     };
   
     // Send data to Apispreadsheets API
-    fetch("https://api.apispreadsheets.com/data/LQmdai9ervKESF0W/", {
+    fetch("https://api.apispreadsheets.com/data/YqnAPH3mtHuOQSt4/", {
       method: "POST",
       body: JSON.stringify({
         data: data,
@@ -123,4 +123,3 @@ function updateData() {
 document.querySelector('button').addEventListener('click', function() {
     updateData(); // Call updateData() function
   });
-  
