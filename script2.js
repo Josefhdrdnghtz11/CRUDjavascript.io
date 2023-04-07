@@ -119,7 +119,8 @@ function updateData() {
       .catch(err => console.log(err));
   }
 
-  // Add an event listener to the button
-document.getElementById('updateBtn').addEventListener('click', updateData);
-
+// Add event listener to button click event
+document.querySelector('button').addEventListener('click', function() {
+    updateData(); // Call updateData() function
+  });
   
