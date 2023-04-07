@@ -8,26 +8,11 @@
     <title>Latihan ke 3</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
-    <script> 
-      function SubForm(){
-        $.ajax({
-          url: 'https://api.apispreadsheets.com/data/LQmdai9ervKESF0W/',
-          type: 'post',
-          data:$('myForm').serializeArray(),
-          success: function(){
-            alert("Success :)")
-          },
-          error: function(){
-            alert("Error :(")
-          }
-        });
-      }
-    </script>
+
   </head>
   <body>
     <!-- buat ngebungkus -->
-    <div id="myForm" class="box">
+    <div class="box">
       <h1>Sistem</h1>
       <h1>JavaScript CRUD</h1>
       <input class="form-tambah" type="text" name="Nama" placeholder="Input Nama.."/>
@@ -50,8 +35,6 @@
       </div>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
-    <script src="https://apis.google.com/js/api.js"></script>
-    <script src="script.js"></script>
+    <script src="script2.js"></script>
   </body>
 </html>
