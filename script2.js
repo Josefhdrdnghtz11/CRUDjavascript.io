@@ -1,5 +1,10 @@
-// Function to send form data to spreadsheet
-function SubForm() {
+document.addEventListener("DOMContentLoaded", function() {
+    // Fetch and display data in table
+    fetchDataAndDisplayData();
+  });
+  
+  // Function to send form data to spreadsheet
+  function SubForm() {
     // Get input values
     const namaInput = document.querySelector('input[name="Nama"]').value;
     const jurusanInput = document.querySelector('input[name="jurusan"]').value;
@@ -73,6 +78,44 @@ function SubForm() {
       .catch(err => console.log(err));
   }
   
-  // Fetch and display data on page load
-  document.addEventListener('DOMContentLoaded', fetchDataAndDisplayData);
+  // Function to update data in spreadsheet
+function updateData() {
+    // Get input values
+    const namaInput = document.querySelector('input[name="Nama"]').value;
+    const jurusanInput = document.querySelector('input[name="jurusan"]').value;
+  
+    // Create data object
+    const data = {
+      No: 1,
+      Nama: namaInput,
+      Jurusan: jurusanInput
+    };
+  
+    // Send data to Apispreadsheets API
+    fetch("https://api.apispreadsheets.com/data/LQmdai9ervKESF0W/", {
+      method: "POST",
+      body: JSON.stringify({
+        data: data,
+        query: "select * from LQmdai9ervKESF0W where No=1"
+      }),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then(res => {
+        if (res.status === 200) {
+          // SUCCESS
+          alert("Data has been updated in spreadsheet!");
+          // Reset input values
+          document.querySelector('input[name="Nama"]').value = '';
+          document.querySelector('input[name="jurusan"]').value = '';
+          // Fetch and display updated data in table
+          fetchDataAndDisplayData();
+        } else {
+          // ERROR
+          alert("Failed to update data in spreadsheet.");
+        }
+      })
+      .catch(err => console.log(err));
+  }
   
